@@ -30,9 +30,21 @@ func main() {
 
 	if success {
 		printCrossWordTerminal(puzzle)
+
+		// Render to PNG
+		config := utils.DefaultConfig()
+		err := utils.RenderPuzzleToPNG(puzzle, "crossword.png", config)
+		if err != nil {
+			fmt.Printf("Error rendering puzzle: %v\n", err)
+			return
+		}
+
+		fmt.Println("Puzzle has been saved to crossword.png")
+
 	} else {
 		fmt.Println("Could not generate a valid puzzle with the given words")
 	}
+
 }
 
 func printCrossWordTerminal(puzzle *utils.Crossword) {
